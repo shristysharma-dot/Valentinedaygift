@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Last Minute Valentine by Kulfi</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#FF5858" />
+</head>
+<body>
+  <div class="bg">
+    <div class="hearts" aria-hidden="true"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Last Minute Valentine</span>
+      <span class="by">by Kulfi</span>
+    </div>
+    <div class="actions">
+      <button id="btnMode" class="ghost" title="Toggle mode">Builder</button>
+      <button id="btnShare" class="primary">Copy Surprise Link</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- BUILDER -->
+    <section id="builder" class="card">
+      <div class="hero">
+        <div class="chip">Rescue Mission</div>
+        <h1>It’s Valentine’s. And you forgot.</h1>
+        <p class="sub">Relax. Build a last-minute gift that still feels personal — in under 60 seconds.</p>
+        <button id="btnStart" class="primary big">Make It Right ❤️</button>
+      </div>
+
+      <div id="builderSteps" class="steps hidden">
+        <!-- Step: Vibe -->
+        <section class="step">
+          <h2>1) Pick the vibe</h2>
+          <div class="grid4" id="vibeGrid">
+            <button class="vibe" data-vibe="soft"><span>❤️</span><b>Soft Romantic</b><small>Warm & sweet</small></button>
+            <button class="vibe" data-vibe="flirty"><span>🔥</span><b>Flirty & Fun</b><small>Cheeky energy</small></button>
+            <button class="vibe" data-vibe="cinema"><span>🌙</span><b>Cinematic</b><small>Slow reveal</small></button>
+            <button class="vibe" data-vibe="cute"><span>🌸</span><b>Cute & Playful</b><small>Wholesome</small></button>
+          </div>
+        </section>
+
+        <!-- Step: Inputs -->
+        <section class="step">
+          <h2>2) Add your love ingredients</h2>
+          <p class="hint">Everything stays editable. You can tweak later.</p>
+
+          <div class="form">
+            <label>Partner name
+              <input id="partnerName" placeholder="e.g., Riya" maxlength="32" />
+            </label>
+
+            <label>How you met
+              <input id="metWhere" placeholder="e.g., college fest / Bumble / office" maxlength="60" />
+            </label>
+
+            <label>One thing they do that melts you
+              <input id="meltThing" placeholder="e.g., that fake angry face" maxlength="80" />
+            </label>
+
+            <label>Inside joke / memory
+              <input id="insideJoke" placeholder="e.g., ‘chai break’ at 2 AM" maxlength="80" />
+            </label>
+
+            <div class="row">
+              <label class="grow">Photo URL (shareable)
+                <input id="photoUrl" placeholder="Paste an image URL (optional)" />
+              </label>
+              <label class="file">
+                Upload photo (local preview)
+                <input id="photoFile" type="file" accept="image/*" />
+              </label>
+            </div>
+          </div>
+
+          <div class="preview">
+            <div class="previewLeft">
+              <h3>Your Love Tiles (drag to reorder)</h3>
+              <div id="tiles" class="tiles" aria-label="Love tiles"></div>
+              <small class="note">Tip: tap a tile to edit it fast.</small>
+            </div>
+
+            <div class="previewRight">
+              <h3>Live Preview</h3>
+              <div class="mini">
+                <div class="miniPhoto" id="miniPhoto"></div>
+                <div class="miniText" id="miniText"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step: Bouquet -->
+        <section class="step">
+          <h2>3) Build the bouquet</h2>
+          <p class="hint">Tap flowers to edit the message. Tap again to “bloom”.</p>
+
+          <div class="bouquetControls">
+            <label>Flower color
+              <input id="flowerColor" type="color" value="#FF5858" />
+            </label>
+            <label class="toggle">
+              <input id="sparkleToggle" type="checkbox" checked />
+              <span>Sparkle</span>
+            </label>
+          </div>
+
+          <div id="bouquet" class="bouquet" aria-label="Interactive bouquet"></div>
+        </section>
+
+        <!-- Step: Story -->
+        <section class="step">
+          <h2>4) Your love story (edit the scenes)</h2>
+          <div class="storyEditor" id="storyEditor"></div>
+          <div class="storyPreview">
+            <button id="btnPreview" class="ghost">Preview Surprise ▶</button>
+          </div>
+        </section>
+
+        <!-- Step: Letter -->
+        <section class="step">
+          <h2>5) The love letter</h2>
+
+          <div class="toneRow">
+            <button class="tone" data-tone="soft">Soft</button>
+            <button class="tone" data-tone="poetic">Poetic</button>
+            <button class="tone" data-tone="funny">Funny</button>
+            <button class="tone" data-tone="dramatic">Dramatic</button>
+          </div>
+
+          <textarea id="loveLetter" rows="8"></textarea>
+
+          <div class="row">
+            <label class="grow">Your signature
+              <input id="signature" placeholder="e.g., Aadhar" maxlength="32" />
+            </label>
+            <label>Reveal style
+              <select id="revealStyle">
+                <option value="envelope">Envelope</option>
+                <option value="lock">Lock & Key</option>
+                <option value="burst">Heart Burst</option>
+                <option value="cinema">Cinematic</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="finalRow">
+            <button id="btnCreate" class="primary big">Create Surprise Link 🔗</button>
+            <div class="smallPrint">This generates a shareable link with your text + vibe + story. If you used “Upload photo”, the photo stays local; for shareable photo, paste a Photo URL.</div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SURPRISE (read-only) -->
+    <section id="surprise" class="card hidden">
+      <div class="surpriseTop">
+        <div class="chip" id="surpriseChip">A surprise for you</div>
+        <button id="btnBack" class="ghost">← Back</button>
+      </div>
+
+      <div id="revealStage" class="revealStage"></div>
+
+      <div class="bigQuestion">
+        <div class="small">I have one question…</div>
+        <h2 id="questionText">Will you be my Valentine?</h2>
+        <div class="btnRow">
+          <button id="btnYes" class="primary">YES ❤️</button>
+          <button id="btnYes2" class="ghost">YES BUT WITH A KISS 😌</button>
+        </div>
+      </div>
+
+      <div class="letterCard" id="letterCard">
+        <div class="envelope" aria-hidden="true"></div>
+        <h3>Your love letter</h3>
+        <pre id="letterText" class="letterText"></pre>
+        <div class="sig" id="sigText"></div>
+      </div>
+
+      <div class="ctaCard">
+        <h3>Now make it official.</h3>
+        <p>A private space for both of you — chats, questions, rituals, memories.</p>
+        <a id="kulfiCta" class="primary big" href="#" rel="noopener">Continue on Kulfi</a>
+        <div class="tiny">P.S. This was made on Kulfi vibes ✨</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Built for last-minute love. No login. Free on GitHub Pages.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
